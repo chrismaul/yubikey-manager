@@ -1,0 +1,23 @@
+name: build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install dependencies
+        run: |
+          sudo apt-add-repository -y ppa:yubico/stable
+          sudo apt-get update
+          sudo apt-get install -qq libykpers-1-1 python3-pyscard swig libpcsclite-dev
+
+      - name: Run unit tests
+        run: python3 setup.py test
+
+      - name: Create source dist
+        run: python3 setup.py sdist
