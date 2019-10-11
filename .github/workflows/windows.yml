@@ -11,17 +11,17 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Install dependencies
+        shell: bash
         run: |
-          choco install swig
-          wget https://developers.yubico.com/yubikey-personalization/Releases/ykpers-1.20.0-win64.zip -OutFile ykpers-1.20.0-win64.zip
+          choco install swig wget
+          wget https://developers.yubico.com/yubikey-personalization/Releases/ykpers-1.20.0-win64.zip -O ykpers-1.20.0-win64.zip
           7z x ykpers-1.20.0-win64.zip
-          Copy-Item .\bin\*.dll . -Force
-          wget https://github.com/libusb/libusb/releases/download/v1.0.22/libusb-1.0.22.7z -OutFile libusb-1.0.22.7z
+          cp -f ./bin/*.dll .
+          wget https://github.com/libusb/libusb/releases/download/v1.0.22/libusb-1.0.22.7z -O libusb-1.0.22.7z
           7z x libusb-1.0.22.7z
-          Copy-Item .\MS64\dll\*.dll . -Force
+          cp -f ./MS64/dll/*.dll .
           python -m pip install --upgrade pip
           pip install .
-        shell: powershell
 
       - name: Run unit tests
         run: python setup.py test
