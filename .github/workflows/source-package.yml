@@ -1,4 +1,4 @@
-name: build
+name: Build a source package
 
 on: [push, pull_request]
 
@@ -17,7 +17,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-add-reposidtory -y ppa:yubico/stable
+          sudo apt-add-repository -y ppa:yubico/stable
           sudo apt-get update
           sudo apt-get install -qq libykpers-1-1 swig libpcsclite-dev
           python -m pip install --upgrade pip
