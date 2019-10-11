@@ -17,6 +17,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -qq git devscripts equivs
           sudo mk-build-deps -i debian/control
+          cd ..
           git clone https://github.com/dainnilsson/scripts
       - name: Dry run of make-ppa
         run: ../scripts/make-ppa --no-sign --no-upload --dists xenial bionic disco
