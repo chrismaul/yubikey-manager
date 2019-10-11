@@ -20,4 +20,4 @@ jobs:
           cd ..
           git clone https://github.com/dainnilsson/scripts
       - name: Dry run of make-ppa
-        run: python ../scripts/make-ppa --no-sign --no-upload --dists xenial bionic disco
+        run: ../scripts/make-ppa --force --no-sign --no-upload --dists xenial bionic disco
